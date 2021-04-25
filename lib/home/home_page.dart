@@ -43,50 +43,53 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: AppBarWidget(user: controller.user!),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          children: [
-            SizedBox(
-              height: 38,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                LevelButtonWidget(label: "Fácil"),
-                LevelButtonWidget(label: "Médio"),
-                LevelButtonWidget(label: "Difícil"),
-                LevelButtonWidget(label: "Perito"),
-              ],
-            ),
-            SizedBox(
-              height: 24,
-            ),
-            Expanded(
-              child: GridView.count(
-                crossAxisCount: 2,
-                crossAxisSpacing: 16,
-                mainAxisSpacing: 16,
-                children: controller.quizzes!.map((e) => QuizCardWidget(
-                  title: e.title,
-                  completed: "${e.questionAnswered} de ${e.questions.length}",
-                  icon: e.image,
-                  percent: e.questionAnswered / e.questions.length,
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ChallengePage(
-                          questions: e.questions,
-                          title: e.title,
-                        ),
-                      ),
-                    );
-                  },
-                )).toList(),
+      body: Container(
+        width: MediaQuery.of(context).size.width,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 38,
               ),
-            ),
-          ],
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  LevelButtonWidget(label: "Fácil"),
+                  LevelButtonWidget(label: "Médio"),
+                  LevelButtonWidget(label: "Difícil"),
+                  LevelButtonWidget(label: "Perito"),
+                ],
+              ),
+              SizedBox(
+                height: 24,
+              ),
+              Expanded(
+                child: GridView.count(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 16,
+                  mainAxisSpacing: 16,
+                  children: controller.quizzes!.map((e) => QuizCardWidget(
+                    title: e.title,
+                    completed: "${e.questionAnswered} de ${e.questions.length}",
+                    icon: e.image,
+                    percent: e.questionAnswered / e.questions.length,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ChallengePage(
+                            questions: e.questions,
+                            title: e.title,
+                          ),
+                        ),
+                      );
+                    },
+                  )).toList(),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

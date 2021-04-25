@@ -17,10 +17,12 @@ class ResultPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double padding = MediaQuery.of(context).size.height * .14;
+
     return Scaffold(
       body: Container(
         width: double.maxFinite,
-        padding: EdgeInsets.only(top: 130, bottom: 130),
+        padding: EdgeInsets.only(top: padding, bottom: padding),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -65,9 +67,8 @@ class ResultPage extends StatelessWidget {
                           label: "Compartilhar",
                           onTap: () {
                             Share.share(
-                              "DevQuiz NLW5 - Flutter: Resultado do Quiz $title:"
-                              "\nObtive ${rightAnswers / length}% de aproveitamento!"
-                            );
+                                "DevQuiz NLW5 - Flutter: Resultado do Quiz $title:"
+                                "\nObtive ${rightAnswers / length}% de aproveitamento!");
                           },
                         ),
                       ),
